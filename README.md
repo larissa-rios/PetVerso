@@ -31,10 +31,11 @@ O objetivo foi criar uma landing page para um Pet Shop fictício, aplicando conc
 
 1. Clone este repositório:
    ```bash
-   git clone [https://github.com/SEU-USUARIO/PetVerso.git](https://github.com/larissa-rios/PetVerso.git)
+   git clone [https://github.com/larissa-rios/PetVerso.git](https://github.com/larissa-rios/PetVerso.git)
    ```
 2. Navegue até a pasta do projeto.
 3. Abra o arquivo index.html no seu navegador de preferência.
 
-👩‍💻 Autora
-Larissa Estudante de Ciência da Computação - UVV
+## 👩‍💻 Autora
+
+Larissa Rios - Estudante de Ciência da Computação - UVV
