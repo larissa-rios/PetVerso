@@ -1,0 +1,991 @@
+/* =============================================
+   VARIÁVEIS GLOBAIS
+   Definição de cores, fontes, sombras, bordas e espaçamentos usados no projeto
+   ============================================= */
+:root {
+    /* Cores principais */
+    --primary: #6E48AA;       /* Roxo principal */
+    --primary-light: #8fc3f3; /* Roxo claro */
+    --secondary: #8cd0f5;     /* Azul secundário */
+    --dark: #644aa4;          /* Roxo escuro */
+    --light: #F7FAFC;         /* Fundo claro */
+    --gray: #E2E8F0;          /* Cinza para bordas */
+    --white: #FFFFFF;         /* Branco */
+    
+    /* Fontes */
+    --font-title: 'Fredoka One', cursive;    /* Fonte para títulos */
+    --font-text: 'Poppins', sans-serif;      /* Fonte para texto */
+    
+    /* Sombras para efeitos de profundidade */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+    
+    /* Bordas arredondadas para suavizar cantos */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    
+    /* Espaçamentos padrão para margens e paddings */
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+}
+
+/* =============================================
+   RESET & ESTILOS BASE
+   Zera margens, paddings e configura box-sizing para facilitar layout
+   ============================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Inclui padding e border no tamanho total */
+}
+
+/* Estilo base do corpo da página */
+body {
+    font-family: var(--font-text); /* Fonte principal para texto */
+    color: var(--dark);             /* Cor do texto padrão */
+    line-height: 1.6;               /* Espaçamento entre linhas */
+    background-color: var(--light); /* Cor de fundo clara */
+    overflow-x: hidden;             /* Evita barra de rolagem horizontal */
+}
+
+/* Estilos para os títulos principais */
+h1, h2, h3 {
+    text-align: center;              /* Centraliza o texto */
+    font-family: var(--font-title); /* Fonte específica para títulos */
+    color: var(--dark);              /* Cor dos títulos */
+    line-height: 1.2;                /* Espaçamento menor entre linhas */
+}
+
+/* Remove sublinhado dos links e herda a cor do texto */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Imagens responsivas para não ultrapassar o tamanho do container */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove espaço extra embaixo das imagens */
+}
+
+/* Container centralizado com largura máxima e padding lateral */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;                /* Centraliza horizontalmente */
+    padding: 0 var(--space-md);   /* Espaçamento interno lateral */
+}
+
+/* Seções com padding vertical espaçado */
+section {
+    padding: var(--space-xl) 0;
+}
+
+/* Classes utilitárias para fundos claros e escuros */
+.bg-light {
+    background-color: var(--light);
+}
+
+.bg-dark {
+    background-color: var(--dark);
+    color: var(--white); /* Texto branco para contraste */
+}
+
+/* =============================================
+   BARRA DE NAVEGAÇÃO
+   ============================================= */
+
+/* Estilo da barra fixa no topo da página */
+.navbar {
+    position: fixed;               /* Fixa no topo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: var(--shadow-sm); /* Sombra leve */
+    z-index: 1000;                /* Fica sobre outros elementos */
+    padding: var(--space-sm) 0;   /* Espaçamento vertical */
+    transition: all 0.3s ease;    /* Animação suave para mudanças */
+}
+
+/* Layout interno da navbar - flex para espaçamento entre itens */
+.navbar .container {
+    display: flex;
+    justify-content: space-between; /* Espaça itens nas extremidades */
+    align-items: center;             /* Alinha verticalmente */
+}
+
+/* Estilo da marca/logo da navbar */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);           /* Espaço entre logo e texto */
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: var(--primary);          /* Cor roxa principal */
+}
+
+/* Ajuste da imagem dentro da marca */
+.brand img {
+    height: 50px;
+    transition: transform 0.3s;    /* Transição suave para hover */
+}
+
+/* Animação da logo ao passar o mouse */
+.brand:hover img {
+    transform: rotate(15deg);      /* Rotaciona levemente */
+}
+
+/* Lista de navegação horizontal */
+.nav-list {
+    display: flex;
+    list-style: none;              /* Remove marcadores */
+    gap: var(--space-lg);          /* Espaço entre links */
+}
+
+/* Links da navegação */
+.nav-list a {
+    font-weight: 500;
+    padding: var(--space-sm) 0;   /* Espaçamento vertical */
+    position: relative;            /* Para pseudo-elementos */
+    transition: color 0.3s;       /* Transição de cor suave */
+}
+
+/* Efeito hover nos links da navbar */
+.nav-list a:hover {
+    color: var(--primary);
+}
+
+/* Estilo para o link ativo da página */
+.nav-list a.active {
+    color: var(--primary);
+    font-weight: 600; /* Destaca o texto */
+}
+
+/* Linha decorativa abaixo do link ativo */
+.nav-list a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary);
+    border-radius: 2px;
+}
+
+/* Botão de chamada para ação (call to action) na navbar */
+.cta-button {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+/* Efeito hover do botão CTA */
+.cta-button:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);  /* Sobe levemente */
+    box-shadow: var(--shadow-md);
+}
+
+/* Botão para abrir menu em dispositivos móveis - inicialmente escondido */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001; /* Fica acima da navbar */
+}
+
+/* Barrinhas do menu hambúrguer */
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--dark);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* =============================================
+   SEÇÃO HERO (DESTAQUE)
+   Área principal de destaque na página inicial
+   ============================================= */
+.hero {
+    min-height: 100vh; /* Ocupa toda a altura da tela */
+    display: flex; /* Usa flexbox para alinhar conteúdo */
+    align-items: center; /* Centraliza verticalmente */
+    padding-top: 80px; /* Espaço para evitar sobreposição com navbar fixa */
+    background: linear-gradient(135deg, #F3EFFF 0%, #E8F4FF 100%); /* Fundo em degradê */
+    position: relative;
+    overflow: hidden; /* Esconde elementos que ultrapassem o container */
+}
+
+/* Container interno usa grid para dividir conteúdo em duas colunas */
+.hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas com mesma largura */
+    align-items: center;
+    gap: var(--space-xl); /* Espaçamento entre colunas */
+    position: relative;
+    z-index: 1; /* Garante que fique acima de elementos posicionados */
+}
+
+/* Estilos do título principal da hero */
+.hero-content h1 {
+    font-size: 3.5rem; /* Tamanho grande para destaque */
+    margin-bottom: var(--space-md);
+    color: var(--primary); /* Cor roxa principal */
+    line-height: 1.1; /* Espaçamento compacto */
+}
+
+/* Parágrafo explicativo na hero */
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-lg);
+    color: var(--dark);
+    max-width: 90%; /* Limita a largura para melhor leitura */
+}
+
+/* Container dos botões na hero, alinhados horizontalmente */
+.hero-buttons {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+/* Estilos base para os botões primário e secundário */
+.btn-primary, .btn-secondary {
+    padding: 0.75rem 2rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Espaço entre ícone e texto */
+}
+
+/* Botão principal com fundo roxo e texto branco */
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Efeito hover do botão principal: muda cor e levanta */
+.btn-primary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Botão secundário com fundo transparente e borda roxa */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+/* Hover do botão secundário: inverte cores e levanta */
+.btn-secondary:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Imagem da hero com animação suave de flutuação */
+.hero-image {
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Ajuste da imagem da hero para responsividade */
+.hero-image img {
+    width: 100%;
+    max-width: 600px; /* Limita tamanho máximo */
+    margin: 0 auto;
+}
+
+/* Definição da animação 'float' para movimentar verticalmente */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* =============================================
+   SEÇÃO SOBRE
+   Área para apresentar informações sobre a empresa
+   ============================================= */
+
+/* Layout da seção sobre com grid de duas colunas */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+#sobre .section-header h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Decorativo: uma linha abaixo do título */
+#sobre .section-header h2::after {
+    content: '';
+    display: block;
+    width: 90px;
+    height: 4px;
+    background-color: var(--dark);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Imagem da seção sobre com cantos arredondados e sombra */
+.about-image {
+    border-radius: var(--radius-lg);
+    overflow: hidden; /* Esconde partes que ultrapassam bordas */
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s; /* Animação suave no hover */
+}
+
+/* Aumenta levemente a imagem ao passar o mouse */
+.about-image:hover {
+    transform: scale(1.02);
+}
+
+/* Imagem dentro da div, também escala no hover para efeito */
+.about-image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s;
+}
+
+.about-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Título dentro da seção sobre */
+.about-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+    color: var(--primary);
+}
+
+/* Parágrafo da seção sobre com espaçamento e legibilidade */
+.about-content p {
+    margin-bottom: var(--space-lg);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Grid para listar recursos ou características */
+.features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+/* Item individual da lista de recursos, com ícone e texto */
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+/* Ícone colorido para destacar o item */
+.feature-item i {
+    color: var(--secondary);
+    font-size: 1.5rem;
+}
+
+/* =============================================
+   SEÇÃO SERVIÇOS
+   Espaço para apresentar serviços oferecidos
+   ============================================= */
+
+/* Fundo suave para a seção serviços */
+#servicos {
+    background-color: rgba(208, 236, 248, 0.308); 
+}
+
+/* Grid responsivo para os cards de serviços */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adapta colunas conforme espaço */
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+/* Card individual de serviço com sombra e borda */
+.service-card {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.05); /* Borda sutil */
+}
+
+/* Efeito hover no card que levanta e muda sombra/borda */
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
+}
+
+/* Ícone circular no card, centralizado */
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(155, 200, 255, 0.274); /* Fundo azul claro */
+    border-radius: 50%; /* Círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md); /* Centraliza e espaça abaixo */
+}
+
+/* Ícone dentro do círculo, com cor secundária */
+.service-icon i {
+    font-size: 2rem;
+    color: var(--secondary);
+}
+
+/* Título do serviço no card */
+.service-card h3 {
+    margin-bottom: var(--space-sm);
+    font-size: 1.5rem;
+}
+
+/* =============================================
+   SEÇÃO PETS
+   Exibe os cards dos pets disponíveis
+   ============================================= */
+.pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas responsivas, no mínimo 280px */
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+.pet-card {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden; /* Esconde conteúdo que ultrapasse o card */
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s;
+    position: relative; /* Para posicionar badge no canto */
+}
+
+/* Hover eleva o card e aumenta sombra */
+.pet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Área da imagem com altura fixa */
+.pet-image {
+    height: 300px;
+    overflow: hidden;
+}
+
+/* Imagem cobre toda área, mantém proporção com crop */
+.pet-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+/* No hover do card, imagem dá um zoom leve */
+.pet-card:hover .pet-image img {
+    transform: scale(1.1);
+}
+
+/* Badge no canto superior direito para status ou destaque */
+.pet-badge {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Badge cinza para pets indisponíveis */
+.pet-badge.disabled {
+    background-color: var(--gray);
+    color: var(--dark);
+}
+
+/* Área com informações do pet, texto centralizado */
+.pet-info {
+    text-align: center;
+    padding: var(--space-md);
+}
+
+/* Nome do pet em destaque */
+.pet-info h3 {
+    margin-bottom: var(--space-sm);
+    font-size: 1.5rem;
+}
+
+/* Descrição ou detalhes menores */
+.pet-info p {
+    color: #666;
+    margin-bottom: var(--space-md);
+    font-size: 0.95rem;
+}
+
+/* Botão pequeno para ações, como "adotar" ou "ver mais" */
+.btn-small {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+/* Hover do botão muda cor e levanta levemente */
+.btn-small:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* Botão desabilitado com aparência cinza e cursor não permito */
+.btn-small.disabled {
+    background-color: var(--gray);
+    color: var(--dark);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =============================================
+   TABELA DE PREÇOS
+   ============================================= */
+.price-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaço entre células */
+    margin-top: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-md);
+    overflow: hidden; /* Para arredondar bordas */
+}
+
+/* Células com padding e alinhamento */
+.price-table th, 
+.price-table td {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--gray);
+}
+
+/* Cabeçalho da tabela com fundo roxo e texto branco */
+.price-table th {
+    background-color: var(--primary);
+    color: var(--white);
+    font-weight: 600;
+}
+
+/* Linhas pares com fundo mais claro para facilitar leitura */
+.price-table tr:nth-child(even) {
+    background-color: rgba(110, 72, 170, 0.05);
+}
+
+/* Hover da linha muda o fundo para destaque */
+.price-table tr:hover {
+    background-color: rgba(110, 72, 170, 0.1);
+}
+
+/* Permite rolar horizontalmente a tabela em telas pequenas */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Cabeçalho das seções centralizado e com largura máxima */
+.section-header.center {
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Subtítulo com cor roxa dentro do cabeçalho centralizado */
+.section-header.center .subtitle {
+    color: var(--primary);
+}
+
+/* =============================================
+   FORMULÁRIO BOOTSTRAP
+   ============================================= */
+/* Estilo dos rótulos (labels) do formulário */
+.contact-form .form-label {
+    font-weight: 500; /* Negrito médio para destaque */
+    color: var(--dark); /* Cor roxa escura definida nas variáveis */
+    margin-bottom: 0.5rem; /* Espaçamento abaixo do label */
+    display: block; /* Faz o label ocupar toda a largura */
+}
+
+/* Estilo dos campos de entrada (inputs e textarea) */
+.contact-form .form-control {
+    border: 1px solid var(--gray); /* Borda cinza clara */
+    border-radius: var(--radius-sm); /* Cantos arredondados pequenos */
+    padding: 0.75rem 1rem; /* Espaçamento interno confortável */
+    transition: all 0.3s; /* Transição suave para mudanças visuais */
+}
+
+/* Efeito visual quando o campo está em foco (selecionado) */
+.contact-form .form-control:focus {
+    border-color: var(--primary); /* Borda roxa */
+    box-shadow: 0 0 0 0.25rem rgba(110, 72, 170, 0.25); /* Sombra roxa suave */
+}
+
+/* Estilo do botão principal dentro do formulário */
+.contact-form .btn-primary {
+    background-color: var(--primary); /* Fundo roxo */
+    border: none; /* Sem borda */
+    padding: 0.75rem; /* Espaçamento interno */
+    font-weight: 600; /* Negrito */
+    margin-top: 0.5rem; /* Espaço acima do botão */
+}
+
+/* =============================================
+   LEGENDA DO VÍDEO
+   ============================================= */
+/* Texto pequeno e em itálico para legendas ou descrições do vídeo */
+.video-caption {
+    margin-top: var(--space-md); /* Espaço acima */
+    font-size: 0.9rem; /* Fonte menor */
+    opacity: 0.8; /* Transparência para suavizar */
+    font-style: italic; /* Itálico */
+    text-align: center; /* Centralizado */
+}
+
+/* =============================================
+   SEÇÃO VÍDEO
+   ============================================= */
+/* Fundo escuro para destacar a seção do vídeo */
+#video {
+    background-color: var(--dark); /* Cor roxa escura */
+    color: var(--white); /* Texto branco para contraste */
+}
+
+/* Container centralizado e com largura máxima */
+.video-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center; /* Conteúdo centralizado */
+}
+
+/* Título do vídeo com margem inferior */
+.video-container h2 {
+    margin-bottom: var(--space-sm);
+    color: var(--white); /* Cor branca */
+}
+
+/* Subtítulo com margem e opacidade */
+.video-subtitle {
+    margin-bottom: var(--space-lg);
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Wrapper para manter proporção 16:9 do vídeo */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Altura relativa para manter proporção */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md); /* Cantos arredondados */
+    box-shadow: var(--shadow-lg); /* Sombra para destaque */
+}
+
+/* iframe do vídeo ocupando todo o wrapper */
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* Sem borda */
+}
+
+/* =============================================
+   SEÇÃO CONTATO
+   ============================================= */
+/* Grid com 2 colunas para informações e formulário */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl); /* Espaçamento grande entre colunas */
+}
+
+/* Estilos para títulos da seção contato */
+.contact-info h2 {
+    margin-bottom: var(--space-md);
+    font-size: 2.5rem; /* Tamanho grande */
+}
+
+/* Parágrafos da seção contato com espaçamento e legibilidade */
+.contact-info p {
+    margin-bottom: var(--space-lg);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Item de informação com ícone e texto alinhados */
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md); /* Espaço entre ícone e texto */
+    margin-bottom: var(--space-md);
+}
+
+/* Ícone com tamanho maior e cor roxa */
+.info-item i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    min-width: 30px; /* Espaço fixo para alinhamento */
+}
+
+/* Estilo do formulário dentro da seção contato */
+.contact-form {
+    background-color: var(--white); /* Fundo branco */
+    padding: var(--space-lg); /* Espaço interno confortável */
+    border-radius: var(--radius-md); /* Cantos arredondados médios */
+    box-shadow: var(--shadow-sm); /* Sombra leve */
+}
+
+/* Espaçamento entre grupos de campos do formulário */
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+/* Estilo para inputs e textarea no formulário */
+.form-group input,
+.form-group textarea {
+    width: 100%; /* Ocupa toda largura disponível */
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-text);
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+/* Foco nos inputs e textarea */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(110, 72, 170, 0.1);
+}
+
+/* Configuração para textarea */
+.form-group textarea {
+    resize: vertical; /* Usuário pode redimensionar só verticalmente */
+    min-height: 150px; /* Altura mínima para conforto */
+}
+
+/* =============================================
+   RODAPÉ
+   ============================================= */
+/* Estilo geral do rodapé com fundo escuro e texto branco */
+footer {
+    background-color: var(--dark); /* Cor roxa escura */
+    color: var(--white); /* Texto branco */
+    padding: var(--space-xl) 0 var(--space-md); /* Espaçamento vertical */
+    position: relative; /* Para posicionamento interno */
+}
+
+/* Conteúdo interno do rodapé, alinhado e centralizado */
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Itens empilhados verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    text-align: center; /* Texto centralizado */
+    margin-bottom: var(--space-xl); /* Espaço abaixo */
+}
+
+/* Texto explicativo ou informativo do rodapé */
+.footer-text {
+    max-width: 500px; /* Largura máxima para melhor leitura */
+    margin-bottom: var(--space-lg);
+    font-size: 1.1rem;
+    opacity: 0.9; /* Um pouco transparente */
+    line-height: 1.7; /* Espaçamento entre linhas */
+}
+
+/* Container dos ícones sociais */
+.social-links {
+    display: flex;
+    gap: var(--space-md); /* Espaço entre os ícones */
+}
+
+/* Cada link social com formato circular */
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255,255,255,0.1); /* Fundo branco translúcido */
+    border-radius: 50%; /* Círculo perfeito */
+    transition: all 0.3s; /* Transição suave */
+    font-size: 1.2rem; /* Tamanho do ícone */
+}
+
+/* Efeito ao passar o mouse nos ícones sociais */
+.social-links a:hover {
+    background-color: var(--primary); /* Fundo roxo */
+    transform: translateY(-3px); /* Sobe um pouco */
+}
+
+/* Texto e separador na parte inferior do rodapé */
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(255,255,255,0.1); /* Linha fina clara */
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* =============================================
+   RESPONSIVIDADE
+   ============================================= */
+/* Ajustes para telas até 992px (ex: tablets em modo paisagem) */
+@media (max-width: 992px) {
+    .hero .container {
+        grid-template-columns: 1fr; /* Coluna única */
+        text-align: center; /* Centraliza texto */
+    }
+    
+    .hero-content p {
+        max-width: 100%; /* Ocupa toda largura */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-buttons {
+        justify-content: center; /* Botões centralizados */
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr; /* Coluna única */
+        gap: var(--space-lg); /* Espaço entre elementos */
+    }
+    
+    .about-image {
+        max-width: 600px;
+        margin: 0 auto; /* Centraliza a imagem */
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr; /* Coluna única */
+        gap: var(--space-lg);
+    }
+}
+
+/* Ajustes para telas até 768px (ex: tablets e celulares grandes) */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Mostrar botão menu (hambúrguer) */
+    }
+    
+    /* Menu de navegação vertical e fixo */
+    .nav-list {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        align-items: center;
+        padding: var(--space-lg) 0;
+        box-shadow: var(--shadow-md);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        gap: var(--space-md);
+    }
+    
+    /* Quando menu ativo, fica visível */
+    .nav-list.active {
+        transform: translateY(0);
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem; /* Título menor para caber */
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr; /* Coluna única */
+    }
+    
+    .features {
+        grid-template-columns: 1fr; /* Coluna única */
+    }
+}
+
+/* Ajustes para telas até 576px (celulares pequenos) */
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2rem; /* Título ainda menor */
+    }
+    
+    .hero-buttons {
+        flex-direction: column; /* Botões empilhados */
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%; /* Botões ocupam toda a largura */
+    }
+    
+    .section-header h2 {
+        font-size: 2rem; /* Títulos menores */
+    }
+    
+    .video-container h2 {
+        font-size: 2rem;
+    }
+    
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Ajustes para tabelas em telas menores (até 768px) */
+@media (max-width: 768px) {
+    .price-table {
+        font-size: 0.9rem; /* Fonte menor */
+    }
+    
+    .price-table th, 
+    .price-table td {
+        padding: var(--space-sm) var(--space-md); /* Menos espaçamento */
+    }
+}

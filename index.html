@@ -1,74 +1,387 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
+    <!-- Metadados essenciais para a codificação e responsividade -->
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech ES</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>PetVerso - Seu Universo Pet</title>
+
+    <!-- Favicon da aba do navegador -->
+    <link rel="icon" href="./images/LOGO PETVERSO.png" type="image/png">
+
+    <!-- Ícones do Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Estilos do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fontes personalizadas do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+
+    <!-- Folha de estilos personalizada -->
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-    <nav>
-        <ul style="list-style-type:none;">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#sobre-empresa">Sobre a Tech ES</a></li>
-            <li><a href="#servico-desktop">Serviço Desktop</a></li>
-            <li><a href="#servico-mobile">Serviço Mobile</a></li>
-            <li><a href="#contato">Contatos</a></li>
-        </ul>
+    <!-- Início da barra de navegação principal -->
+    <nav class="navbar">
+        <div class="container">
+            <!-- Logotipo e nome do site -->
+            <a class="brand" href="#">
+                <img src="./images/LOGO PETVERSO.png" alt="PetVerso" height="50">
+                <span>PetVerso</span>
+            </a>
+
+            <!-- Botão de menu para telas pequenas -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Lista de navegação do menu -->
+            <ul class="nav-list">
+                <li><a href="#home" class="active">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#pets">Nossos Pets</a></li>
+                <li><a href="#contato" class="cta-button">Contato</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <section id="home">
-        <h1>Bem-vindo à Empresa Tech ES</h1>
-        <p>Soluções modernas para desenvolvimento mobile e desktop</p>
+    <!-- Seção de apresentação principal (Hero) -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Seu Pet Merece o Melhor</h1>
+                <p>Cuidamos com amor do seu companheiro de quatro patas</p>
+                <!-- Botões de chamada para ação -->
+                <div class="hero-buttons">
+                    <a href="#servicos" class="btn-primary">Nossos Serviços</a>
+                    <a href="#pets" class="btn-secondary">Conheça nossos pets</a>
+                </div>
+            </div>
+            <!-- Imagem ilustrativa principal -->
+            <div class="hero-image">
+                <img src="./images/auau e miau.png" alt="Cachorro e gato felizes" loading="lazy">
+            </div>
+        </div>
     </section>
 
-    <section id="sobre-empresa">
-        <h1>Sobre a Empresa</h2>
-        <p>A Empresa Tech ES é uma empresa de desenvolvimento de software, com foco em
-        soluções inovadoras para desktop e mobile. Nossos profissionais são altamente
-        qualificados e estão sempre atualizados com as últimas tecnologias do mercado.</p>
+    <!-- Seção Sobre Nós -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sobre Nós</h2>
+            </div>
+
+            <div class="about-grid">
+                <!-- Imagem da equipe -->
+                <div class="about-image">
+                    <img src="./images/equipe.png" alt="Equipe PetVerso">
+                </div>
+
+                <!-- Texto sobre a empresa -->
+                <div class="about-content">
+                    <h3>Mais que um pet shop, uma família</h3>
+                    <p>Desde 2015, a PetVerso oferece um espaço completo para o bem-estar dos pets. Com atendimento veterinário especializado, serviços de pet shop e um lar temporário para animais em busca de adoção, nossa missão é cuidar com carinho de cada vida que passa por aqui.</p>
+
+                    <!-- Lista de características da empresa -->
+                    <div class="features">
+                        <div class="feature-item">
+                            <i class="bi bi-heart-fill"></i>
+                            <span>Tratamento humanizado</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="bi bi-shield-fill-check"></i>
+                            <span>Profissionais certificados</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="bi bi-star-fill"></i>
+                            <span>Excelência em atendimento</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="bi bi-heart-fill"></i>
+                            <span>Apoio à adoção responsável</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="servico-desktop">
-        <h2>Desenvolvimento Desktop</h2>
-        <p>Criamos sitemas robustos para Windows, macOS e Linux, utilizando as melhores
-        tecnologias do mercado.</p>
+    <!-- Seção de Serviços -->
+    <section id="servicos" class="section">
+        <div class="container">
+            <div class="section-header center">
+                <h2>Nossos Serviços</h2>
+                <p class="subtitle">Tudo que seu pet precisa em um só lugar</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Card de serviço: Adoção -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-balloon-heart-fill"></i>
+                    </div>
+                    <h3>Adoção Responsável</h3>
+                    <p>Encontre seu novo melhor amigo em nosso programa de adoção cuidadosamente supervisionado.</p>
+                </div>
+
+                <!-- Card de serviço: Banho e Tosa -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-scissors"></i>
+                    </div>
+                    <h3>Banho & Tosa</h3>
+                    <p>Serviços de higiene profissional com produtos hipoalergênicos e técnicas especializadas.</p>
+                </div>
+
+                <!-- Card de serviço: Clínica -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                    </div>
+                    <h3>Clínica Veterinária</h3>
+                    <p>Consultas, exames e tratamentos com equipamentos modernos e profissionais qualificados.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="servico-mobile">
-        <h2>Desenvolvimento Mobile</h2>
-        <p>Aplicativos inovadores para Android e iOS, com design responsivo e ótima
-        performance.</p>
+    <!-- Seção Nossos Pets (com cards de pets) -->
+    <section id="pets" class="section">
+        <div class="container">
+            <div class="section-header center">
+                <h2>Nossos Pets</h2>
+                <p class="subtitle">Conheça alguns de nossos amigos à espera de um lar</p>
+            </div>
+
+            <div class="pets-grid">
+                <!-- Card do pet Garu -->
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="./images/Garu.jpeg" alt="Cachorro Garu">
+                        <div class="pet-badge">Disponível</div>
+                    </div>
+                    <div class="pet-info">
+                        <h3>Garu</h3>
+                        <p>Macho • 2 anos • Porte médio</p>
+                        <!-- Lista de características do pet Garu -->
+                        <ul class="pet-lista">
+                            <li>Amigável com crianças</li>
+                            <li>Adestrado para comandos básicos</li>
+                            <li>Castrado</li>
+                            <li>Vacinas em dia</li>
+                            <li>Adora passeios ao ar livre</li>
+                        </ul>
+                        <a href="#contato" class="btn-small">Quero adotar</a>
+                    </div>
+                </div>
+
+                <!-- Card do pet Ninho -->
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="./images/ninho.jpeg" alt="Gato Ninho">
+                        <div class="pet-badge">Disponível</div>
+                    </div>
+                    <div class="pet-info">
+                        <h3>Ninho</h3>
+                        <p>Macho • 1 ano • Porte pequeno</p>
+                        <!-- Lista de características do pet Ninho -->
+                        <ul class="pet-lista">
+                            <li>Dócil e calmo</li>
+                            <li>Acostumado com apartamento</li>
+                            <li>Castrado</li>
+                            <li>Usa caixa de areia</li>
+                            <li>Companheiro e carinhoso</li>
+                        </ul>
+                        <a href="#contato" class="btn-small">Quero adotar</a>
+                    </div>
+                </div>
+
+                <!-- Card da pet Olivia -->
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="./images/olivia.jpeg" alt="Cadela Olivia">
+                        <div class="pet-badge">Reservado</div>
+                    </div>
+                    <div class="pet-info">
+                        <h3>Olivia</h3>
+                        <p>Fêmea • 3 anos • Porte pequeno</p>
+                        <!-- Lista de características da pet Olivia -->
+                        <ul class="pet-lista">
+                            <li>Protetora e amorosa</li>
+                            <li>Ideal para casa com quintal</li>
+                            <li>Vacinada e vermifugada</li>
+                            <li>Castrada</li>
+                            <li>Resgatada e reabilitada</li>
+                        </ul>
+                        <a href="#contato" class="btn-small disabled">Indisponível</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="contato">
-        <h2>Entre em Contato</h2>
-        <form>
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
+    <!-- Seção Tabela de Preços -->
+    <section id="precos" class="section bg-light">
+        <div class="container">
+            <div class="section-header center">
+                <h2>Tabela de Preços</h2>
+                <p class="subtitle">Conheça nossos valores e serviços</p>
+            </div>
 
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" required></textarea>
-
-            <button type="submit">Enviar</button>
-        </form>
+            <div class="table-responsive">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Serviço</th>
+                            <th>Descrição</th>
+                            <th>Duração</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Banho</td>
+                            <td>Banho completo com produtos premium</td>
+                            <td>1h</td>
+                            <td>R$ 50,00</td>
+                        </tr>
+                        <tr>
+                            <td>Tosa Higiênica</td>
+                            <td>Tosa na região das patas, barriga e área íntima</td>
+                            <td>1h</td>
+                            <td>R$ 40,00</td>
+                        </tr>
+                        <tr>
+                            <td>Tosa Completa</td>
+                            <td>Tosa personalizada de acordo com a raça</td>
+                            <td>1h30</td>
+                            <td>R$ 70,00</td>
+                        </tr>
+                        <tr>
+                            <td>Consulta Veterinária</td>
+                            <td>Consulta básica com especialista</td>
+                            <td>30min</td>
+                            <td>R$ 120,00</td>
+                        </tr>
+                        <tr>
+                            <td>Vacinação</td>
+                            <td>Aplicação de vacinas obrigatórias</td>
+                            <td>20min</td>
+                            <td>R$ 80,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </section>
 
+    <!-- Seção de Vídeo Educativo -->
+    <section id="video" class="section">
+        <div class="container">
+            <div class="video-container">
+                <h2>Por que adotar?</h2>
+                <p class="video-subtitle">Assista ao nosso vídeo sobre adoção responsável</p>
+
+                <figure>
+                    <!-- Embeds YouTube vídeo em proporção 16:9 -->
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/pF8RrqREX70" title="Vídeo sobre adoção de pets" allowfullscreen></iframe>
+                    </div>
+                    <!-- Legenda descritiva para o vídeo -->
+                    <figcaption class="video-caption">A adoção responsável transforma vidas - tanto dos pets quanto dos tutores</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato -->
+    <section id="contato" class="section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Informações de contato -->
+                <div class="contact-info">
+                    <h2>Entre em Contato</h2>
+                    <p>Estamos aqui para responder todas suas dúvidas sobre nossos serviços e pets disponíveis.</p>
+
+                    <!-- Endereço -->
+                    <div class="info-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>Rua dos Animais, 123 - Vila Velha, ES</span>
+                    </div>
+
+                    <!-- Telefone -->
+                    <div class="info-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <span>(27) 1234-5678</span>
+                    </div>
+
+                    <!-- E-mail -->
+                    <div class="info-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>contato@petverso.com.br</span>
+                    </div>
+                </div>
+
+                <!-- Formulário de contato estilizado com Bootstrap -->
+                <div class="contact-form">
+                    <form id="form-contato" class="row g-3">
+                        <div class="col-md-12">
+                            <label for="nome" class="form-label">Nome Completo</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Seu nome" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="email" placeholder="Seu e-mail" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input type="tel" class="form-control" id="telefone" placeholder="(27) 99999-9999">
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="mensagem" class="form-label">Mensagem</label>
+                            <textarea class="form-control" id="mensagem" rows="5" placeholder="Sua mensagem" required></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100">Enviar Mensagem</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé do site -->
     <footer>
-        <p>Siga-nos nas redes sociais</p>
-        <ul style="list-style-type:none;">
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">LinkedIn</a></li>
-        </ul>
-        <p>&copy; 2025 Empresa Tech ES - Todos os direitos reservados.</p>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">O universo de cuidados que seu pet merece.</p>
+
+                <!-- Links para redes sociais -->
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Direitos autorais -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 PetVerso. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Script JavaScript principal -->
+    <script src="script.js"></script>
 </body>
 </html>
